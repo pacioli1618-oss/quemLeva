@@ -1,0 +1,33 @@
+.track {
+  width: 100%;
+  overflow: hidden;
+  border-radius: var(--radius-pill);
+}
+
+.medium {
+  height: 10px;
+}
+
+.small {
+  height: 6px;
+}
+
+.fill {
+  height: 100%;
+  border-radius: var(--radius-pill);
+  transition: width 240ms ease;
+}
+
+.brand {
+  background: var(--track);
+}
+.brand .fill {
+  background: var(--brand);
+}
+
+.ember {
+  background: var(--ember-track);
+}
+.ember .fill {
+  background: var(--ember);
+}

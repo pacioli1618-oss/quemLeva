@@ -1,0 +1,25 @@
+.tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.brand {
+  background: var(--brand-tint);
+  color: var(--brand-strong);
+}
+
+.neutral {
+  background: var(--divider);
+  color: var(--ink-soft);
+}
+
+.ember {
+  background: var(--ember-tint);
+  color: var(--ember-strong);
+}

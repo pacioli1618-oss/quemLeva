@@ -1,0 +1,28 @@
+.status {
+  min-height: 100dvh;
+  max-width: 480px;
+  margin: 0 auto;
+  padding: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-4);
+  text-align: center;
+}
+
+.statusText,
+.errorText {
+  margin: 0;
+  font-size: 15px;
+  line-height: 22px;
+}
+
+.statusText {
+  color: var(--ink-muted);
+}
+
+.errorText {
+  color: var(--ember-strong);
+  font-weight: 600;
+}

@@ -1,0 +1,25 @@
+.group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.chip {
+  min-height: var(--size-chip);
+  padding: 0 14px;
+  border: 1px solid var(--border-control);
+  border-radius: var(--radius-pill);
+  background: var(--card);
+  color: var(--ink-soft);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.chip[aria-pressed='true'] {
+  border: 1.5px solid var(--brand);
+  padding: 0 13.5px;
+  background: var(--brand-tint);
+  color: var(--brand-strong);
+  font-weight: 700;
+}

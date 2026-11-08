@@ -1,0 +1,82 @@
+{
+  "me": "11cae6a4-46e6-477d-97c4-2bcb8817bf90",
+  "event": {
+    "id": "a406f4f4-6e36-4f4b-8e80-832decb8ac1e",
+    "kids": 5,
+    "kind": "barbecue",
+    "slug": "sh3v2kw2nc2s",
+    "notes": null,
+    "title": "Churrasco de domingo",
+    "adults": 20,
+    "locale": "pt-BR",
+    "currency": "BRL",
+    "location": "Casa da Tia Rosa",
+    "event_date": "2026-11-29",
+    "event_time": "13:00:00",
+    "updated_at": "2026-11-08T16:13:18.200639+00:00",
+    "spliit_group_url": null
+  },
+  "items": [
+    {
+      "id": "3ff62200-ccd1-426d-8767-c2dedb59e798",
+      "name": "Picanha",
+      "sort": 1,
+      "unit": "kg",
+      "claims": [
+        {
+          "name": "Ana",
+          "note": "sem gordura",
+          "quantity": 1.5,
+          "amount_spent": 180.5,
+          "participant_id": "11cae6a4-46e6-477d-97c4-2bcb8817bf90"
+        }
+      ],
+      "category": "meat",
+      "quantity_needed": 3.0,
+      "quantity_claimed": 1.5
+    },
+    {
+      "id": "485a1c6d-4de9-45bf-9662-f55bfce99fc7",
+      "name": "Gelo",
+      "sort": 2,
+      "unit": "bag",
+      "claims": [],
+      "category": null,
+      "quantity_needed": 4.0,
+      "quantity_claimed": 0
+    },
+    {
+      "id": "cb4bd8a9-f20c-4a19-a96f-d9086411db77",
+      "name": "Farofa",
+      "sort": 3,
+      "unit": null,
+      "claims": [],
+      "category": null,
+      "quantity_needed": null,
+      "quantity_claimed": 0
+    }
+  ],
+  "participants": [
+    {
+      "id": "f6229705-c041-4874-a36c-997d15060868",
+      "name": "Luca",
+      "rsvp": "yes",
+      "plus_ones": 0,
+      "invited_by_host": false
+    },
+    {
+      "id": "11cae6a4-46e6-477d-97c4-2bcb8817bf90",
+      "name": "Ana",
+      "rsvp": "yes",
+      "plus_ones": 2,
+      "invited_by_host": false
+    },
+    {
+      "id": "5032e40d-c60b-4f44-9873-6e4ade29c856",
+      "name": "Tia Cris",
+      "rsvp": null,
+      "plus_ones": 0,
+      "invited_by_host": true
+    }
+  ]
+}

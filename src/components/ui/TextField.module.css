@@ -1,0 +1,48 @@
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.label {
+  font-size: 13px;
+  line-height: 18px;
+  font-weight: 600;
+  color: var(--ink-soft);
+}
+
+.input {
+  height: 46px;
+  width: 100%;
+  padding: 0 14px;
+  border: 1px solid var(--border-control);
+  border-radius: var(--radius-sm);
+  background: var(--card);
+  color: var(--ink);
+  /* 16px or more: iOS Safari does not zoom in when the field gets focus. */
+  font-size: 16px;
+}
+
+.input::placeholder {
+  color: var(--ink-muted);
+  opacity: 0.8;
+}
+
+.input[aria-invalid='true'] {
+  border-color: var(--ember-strong);
+  border-width: 2px;
+  padding: 0 13px;
+}
+
+.hint {
+  font-size: 12px;
+  line-height: 16px;
+  color: var(--ink-muted);
+}
+
+.error {
+  font-size: 13px;
+  line-height: 18px;
+  font-weight: 600;
+  color: var(--ember-strong);
+}

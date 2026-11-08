@@ -1,0 +1,43 @@
+.bar {
+  position: sticky;
+  bottom: 0;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(0, 1fr);
+  padding: 6px var(--space-1) calc(14px + env(safe-area-inset-bottom));
+  background: var(--card);
+  border-top: 1px solid var(--border);
+}
+
+.tab {
+  min-height: 56px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  font-size: 11px;
+  line-height: 14px;
+  font-weight: 600;
+  color: var(--ink-muted);
+  text-decoration: none;
+  text-align: center;
+}
+
+.icon {
+  width: 48px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-pill);
+}
+
+.tab[aria-current='page'] {
+  font-weight: 800;
+  color: var(--brand-strong);
+}
+
+.tab[aria-current='page'] .icon {
+  background: var(--brand-tint);
+}

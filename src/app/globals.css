@@ -1,49 +1,116 @@
+/* Design System tokens (artifact "QuemLeva — identidade visual"). Names follow docs/conventions.md.
+   Keep in sync with the Design System's tokens.json. */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  color-scheme: light dark;
+
+  /* Color — light */
+  --surface: #f5f6f3;
+  --card: #ffffff;
+  --ink: #18201a;
+  --ink-soft: #3e4840;
+  --ink-muted: #556058;
+  --border: #dde1da;
+  --border-control: #848d85;
+  --divider: #eef0ec;
+  --track: #eef0ec;
+  --brand: #1e7a4c;
+  --brand-strong: #155c39;
+  --brand-tint: #e4f1e9;
+  --on-brand: #ffffff;
+  --ember: #c2611b;
+  --ember-strong: #8a3f06;
+  --ember-tint: #fcefe1;
+  --ember-track: #f3e3d2;
+
+  /* Spacing */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+
+  /* Radius */
+  --radius-sm: 12px;
+  --radius-md: 16px;
+  --radius-lg: 20px;
+  --radius-pill: 999px;
+
+  /* Size */
+  --size-chip: 36px;
+  --size-control: 44px;
+  --size-cta: 54px;
+
+  /* Type */
+  --font-sans: var(--font-jakarta), "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
+/* Screen only: paper is always light, so printed pages keep dark text. */
+@media screen and (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --surface: #121713;
+    --card: #1b221d;
+    --ink: #eef2ec;
+    --ink-soft: #c7cec8;
+    --ink-muted: #a3ada5;
+    --border: #2a322c;
+    --border-control: #6f7a71;
+    --divider: #232b25;
+    --track: #2a322c;
+    --brand: #4cc285;
+    --brand-strong: #bfe6cf;
+    --brand-tint: #1f3a2a;
+    --on-brand: #0e1a12;
+    --ember: #e07f38;
+    --ember-strong: #f2a66b;
+    --ember-tint: #3a2414;
+    --ember-track: #3a2a1e;
   }
-}
-
-html {
-  height: 100%;
-}
-
-html,
-body {
-  max-width: 100vw;
-  overflow-x: hidden;
-}
-
-body {
-  min-height: 100%;
-  display: flex;
-  flex-direction: column;
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
 * {
   box-sizing: border-box;
-  padding: 0;
+}
+
+html,
+body {
   margin: 0;
+  background: var(--surface);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
 }
 
-a {
+button,
+input,
+select,
+textarea {
+  font: inherit;
   color: inherit;
-  text-decoration: none;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
+/* One focus style for every control: visible on keyboard, invisible on tap. */
+:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+  }
+}
+
+@media print {
+  :root {
+    color-scheme: light;
+  }
+}
+
+@media print {
+  html,
+  body {
+    background: var(--card);
   }
 }

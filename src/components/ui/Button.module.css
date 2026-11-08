@@ -1,0 +1,83 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  min-height: var(--size-control);
+  padding: 0 var(--space-4);
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    background-color 120ms ease,
+    border-color 120ms ease,
+    opacity 120ms ease;
+}
+
+.button:disabled,
+.button[aria-disabled='true'] {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.primary {
+  background: var(--brand);
+  color: var(--on-brand);
+}
+.primary:hover:not(:disabled) {
+  background: var(--brand-strong);
+}
+@media (prefers-color-scheme: dark) {
+  /* brand-strong is a light tint in dark mode; keep the button green and lift it slightly. */
+  .primary:hover:not(:disabled) {
+    background: var(--brand);
+    opacity: 0.9;
+  }
+}
+
+.secondary {
+  background: var(--card);
+  color: var(--ink);
+  border-color: var(--border-control);
+}
+.secondary:hover:not(:disabled) {
+  background: var(--surface);
+}
+
+.ghost {
+  background: transparent;
+  color: var(--brand-strong);
+}
+.ghost:hover:not(:disabled) {
+  background: var(--brand-tint);
+}
+
+.cta {
+  min-height: var(--size-cta);
+  border-radius: var(--radius-md);
+  font-size: 16px;
+}
+
+.fullWidth {
+  width: 100%;
+}
+
+.spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: spin 700ms linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

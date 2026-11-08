@@ -1,0 +1,71 @@
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-variant-numeric: tabular-nums;
+}
+
+.table th {
+  padding: 2mm 2mm 1.5mm;
+  border-bottom: 1.5px solid var(--ink);
+  font-size: 8.5pt;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-align: left;
+  color: var(--ink-soft);
+}
+
+.table td {
+  padding: 2.4mm 2mm;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+
+.table tr {
+  break-inside: avoid;
+}
+
+.check {
+  width: 7mm;
+}
+
+.box {
+  display: inline-block;
+  width: 3.6mm;
+  height: 3.6mm;
+  border: 1.2px solid var(--ink);
+  border-radius: 0.8mm;
+  vertical-align: -0.5mm;
+}
+
+.isDone .box {
+  background: var(--ink);
+}
+
+.name {
+  font-weight: 700;
+}
+
+.muted {
+  color: var(--ink-muted);
+}
+
+.missing {
+  color: var(--ember-strong);
+  font-weight: 600;
+}
+
+/* Empty rows to write on by hand. */
+.blank td {
+  height: 8mm;
+}
+
+.groupRow td {
+  padding-top: 4mm;
+  border-bottom: 0;
+  font-size: 9pt;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+}

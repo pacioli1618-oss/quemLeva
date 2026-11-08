@@ -1,36 +1,35 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# QuemLeva
 
-## Getting Started
+A sign-up-free web app to sort out **who brings what** to family events. Licensed under AGPL-3.0.
 
-First, run the development server:
+- Next.js 16 (App Router, `cacheComponents`) + Supabase (Postgres, `ql_*` RPCs, Realtime broadcast)
+- Languages: pt-BR, es, en. See [docs/i18n.md](docs/i18n.md).
+- Naming and code style: [docs/conventions.md](docs/conventions.md). **Read it before contributing.**
+- What is deliberately left for after the MVP: [docs/improvements.md](docs/improvements.md).
+- Everything the app stores on the device goes through `src/lib/device-store.ts`.
+
+## Running
 
 ```bash
+cp .env.example .env.local
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Component showcase (development only): http://localhost:3000/dev/ui
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Scripts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Command | What it does |
+| --- | --- |
+| `npm run dev` | Development server |
+| `npm run build` | Production build |
+| `npm run lint` | ESLint |
+| `npm run typecheck` | Generates route types and runs TypeScript |
+| `npm run i18n:check` | Checks translations: keys, ICU syntax and arguments |
+| `npm test` | Unit tests (Node test runner + tsx), including RPC response mapping against real fixtures |
+| `npm run db:types` | Regenerates `src/lib/database.types.ts` from the database (run `npx supabase login` once) |
 
-## Learn More
+## Database
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Migrations live in `supabase/migrations/`. After applying one, run `npm run db:types` and, if an RPC response changed, refresh `tests/fixtures/` and the types in `src/lib/api-mappers.ts`. The `quemleva` schema is not exposed through the Data API: all access goes through the `public.ql_*` functions. Migrations before `20261108000300_naming_conventions.sql` predate the conventions and keep their original names and comments as history.

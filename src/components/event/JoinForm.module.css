@@ -1,0 +1,112 @@
+.screen {
+  min-height: 100dvh;
+  max-width: 480px;
+  margin: 0 auto;
+  padding: var(--space-5) var(--space-5) var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  min-height: 40px;
+}
+
+/* Inverted card: ink background, surface text. Flips correctly in dark mode too. */
+.hero {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: var(--space-5);
+  border-radius: 22px;
+  background: var(--ink);
+  color: var(--surface);
+}
+
+.heroLabel {
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  opacity: 0.75;
+}
+
+.heroTitle {
+  margin: 0;
+  font-size: 26px;
+  line-height: 30px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  overflow-wrap: anywhere;
+}
+
+.heroMeta {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  font-size: 14px;
+  line-height: 20px;
+  opacity: 0.85;
+}
+
+.heroTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: var(--space-1);
+}
+
+.heroTag {
+  padding: 6px var(--space-3);
+  border-radius: var(--radius-pill);
+  background: color-mix(in srgb, var(--surface) 14%, transparent);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.form {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.nameField label {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.nameField input {
+  height: 50px;
+  font-size: 17px;
+}
+
+.rsvp {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.rsvpLabel {
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.footer {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.error {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ember-strong);
+  text-align: center;
+}
