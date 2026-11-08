@@ -1,4 +1,4 @@
-import type {Metadata} from 'next';
+import type {Metadata, Viewport} from 'next';
 import {NextIntlClientProvider} from 'next-intl';
 import {getLocale, getTranslations} from 'next-intl/server';
 import localFont from 'next/font/local';
@@ -21,8 +21,21 @@ export function generateStaticParams() {
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations('Metadata');
-  return {title: t('title'), description: t('description')};
+  return {
+    title: t('title'),
+    description: t('description'),
+    // Home-screen app on iPhone (Android reads app/manifest.ts).
+    appleWebApp: {capable: true, title: 'QuemLeva', statusBarStyle: 'default'},
+  };
 }
+
+// Browser bar color, matching --surface in each theme.
+export const viewport: Viewport = {
+  themeColor: [
+    {media: '(prefers-color-scheme: light)', color: '#f5f6f3'},
+    {media: '(prefers-color-scheme: dark)', color: '#121713'},
+  ],
+};
 
 export default async function LocaleLayout({children}: LayoutProps<'/[locale]'>) {
   const locale = await getLocale();

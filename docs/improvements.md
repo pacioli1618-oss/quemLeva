@@ -60,3 +60,33 @@ MVP: the host opens Spliit, pastes the expense summary ("Copiar resumo dos gasto
 group link (`events.spliit_group_url`); everyone then sees "Acertar as contas no Spliit" on the list.
 Next: create the group and its expenses from a server route using Spliit's unofficial API, with the
 manual flow kept as the fallback when the API fails (`Expenses.spliitError`).
+
+## Mobile app (iPhone and Android)
+
+Only if the web app succeeds. Cheapest first:
+
+1. **PWA (done).** `src/app/manifest.ts`, icons in `public/icons/`, `src/app/apple-icon.png` and
+   `appleWebApp` metadata: "Add to home screen" opens QuemLeva full screen on "Meus eventos".
+   No service worker on purpose: data is live, there is nothing useful offline.
+2. **Store app wrapping the site (Capacitor).** Same code, store presence. Apple tends to reject
+   apps that only wrap a website (App Review 4.2), so this step needs a native feature, in practice
+   **push notifications** ("faltam 2 itens para o churrasco").
+3. **Native app (React Native, Flutter/FlutterFlow).** Best phone experience; screens are rebuilt.
+
+Already reusable by any of them:
+- Every read and write is a `ql_*` RPC; Realtime is a public broadcast on `event:<slug>`.
+- Framework-free rules with tests: `item-status`, `event-summary`, `expenses`, `guest-groups`,
+  `my-events`, `quantity`, `share-links` (as is in React Native; as a spec in Flutter).
+- Messages in `messages/*.json` (pt-BR, es, en).
+- `src/lib/device-store.ts` is the only place that touches device storage (swap localStorage for
+  the native store).
+- Links `/e/<slug>` are stable and can open the app.
+
+Still to build for a store app:
+- `push_tokens` table + `ql_register_push_token` / `ql_unregister_push_token` RPCs, and an Edge
+  Function that sends on claim and RSVP changes.
+- Universal/App Links: `/.well-known/apple-app-site-association` and `/.well-known/assetlinks.json`
+  served as static files from `public/.well-known/` (checked: the locale proxy skips both paths).
+- Developer accounts: Apple (yearly) and Google Play (one-time).
+- Moving "Meus eventos" from the browser to the app: the existing export link (`exportStore` /
+  `importStore`) does it.
