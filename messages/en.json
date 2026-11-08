@@ -279,6 +279,7 @@
     "item_not_found": "This item was removed from the list.",
     "participant_not_found": "This invite no longer exists.",
     "quantity_exceeds_remaining": "{count, plural, =0 {This item is already covered.} other {Only {amount} still needed for this item.}}",
+    "rate_limited": "You've created a lot of events in a short time. {period, select, day {Try again tomorrow.} other {Try again in an hour.}}",
     "network": "You're offline. Your change wasn't saved.",
     "unknown": "Something went wrong. Try again."
   },

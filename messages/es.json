@@ -279,6 +279,7 @@
     "item_not_found": "Este ítem se quitó de la lista.",
     "participant_not_found": "Esta invitación ya no existe.",
     "quantity_exceeds_remaining": "{count, plural, =0 {Este ítem ya está asegurado.} one {Solo falta {amount} de este ítem.} other {Solo faltan {amount} de este ítem.}}",
+    "rate_limited": "Creaste muchos eventos en poco tiempo. {period, select, day {Inténtalo de nuevo mañana.} other {Inténtalo de nuevo en una hora.}}",
     "network": "Sin conexión. Tu cambio no se guardó.",
     "unknown": "Algo salió mal. Inténtalo de nuevo."
   },

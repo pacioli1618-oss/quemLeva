@@ -78,7 +78,7 @@ Columns repeat the table name only when the bare word is a SQL type or keyword: 
 
 ## 5. Error codes
 
-Errors raised by RPCs carry a fixed English code as the message, in `snake_case`: `<subject>_<problem>` (`event_not_found`, `quantity_exceeds_remaining`) or a generic state (`not_authorized`, `not_joined`). Extra data goes in `DETAIL`. The `Errors` namespace in `messages/*.json` uses the **same codes as keys**. This is the one place where i18n keys are `snake_case`.
+Errors raised by RPCs carry a fixed English code as the message, in `snake_case`: `<subject>_<problem>` (`event_not_found`, `quantity_exceeds_remaining`) or a generic state (`not_authorized`, `not_joined`). Extra data goes in `DETAIL` (`quantity_exceeds_remaining` → what is still missing; `rate_limited` → `hour` or `day`). The `Errors` namespace in `messages/*.json` uses the **same codes as keys**. This is the one place where i18n keys are `snake_case`.
 
 ## 6. Realtime
 

@@ -10,6 +10,7 @@ export const rpcErrorCodes = [
   'item_not_found',
   'participant_not_found',
   'quantity_exceeds_remaining',
+  'rate_limited',
 ] as const;
 export type RpcErrorCode = (typeof rpcErrorCodes)[number];
 
@@ -37,6 +38,10 @@ export function useRpcErrorMessage() {
     if (code === 'quantity_exceeds_remaining') {
       const remaining = Number(error?.details ?? 0);
       return t('quantity_exceeds_remaining', {count: remaining, amount: formatAmount(remaining, unit)});
+    }
+    if (code === 'rate_limited') {
+      // DETAIL says which window is full: 'hour' or 'day' (ql_create_event).
+      return t('rate_limited', {period: error?.details === 'day' ? 'day' : 'hour'});
     }
     return t(code);
   };
