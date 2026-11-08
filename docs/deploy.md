@@ -13,6 +13,7 @@ Production runs on **Vercel** (Next.js, no Vercel-specific code) with **Supabase
    | --- | --- |
    | `NEXT_PUBLIC_SUPABASE_URL` | `https://uqkyhzvdwynpkqdiuvyn.supabase.co` |
    | `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` | the publishable key (`.env.example`) |
+   | `NEXT_PUBLIC_SITE_URL` | optional: `https://quemleva.gr1618.io`. Base of the link-preview image URL; without it Next uses the Vercel production domain. |
 
    Both are public by design: the browser calls the `ql_*` RPCs directly, and the tables are
    not exposed (see `docs/conventions.md` and the Supabase notes).
@@ -44,6 +45,9 @@ already shared in WhatsApp groups keep working.
 3. Phone A sees the claim within a second without reloading (Realtime).
 4. Open the host link on a third browser: it becomes host and lands on the event.
 5. Print versions open and print on one A4 page each.
+6. Link preview: paste an event link into a WhatsApp chat (or https://www.opengraph.xyz) and
+   check the card: event name, date, place and the green bar. WhatsApp caches previews per URL,
+   so test with a new event after changing the image.
 
 ## Plan and cost
 

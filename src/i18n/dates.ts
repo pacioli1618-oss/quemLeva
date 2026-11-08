@@ -1,4 +1,7 @@
 import {useFormatter} from 'next-intl';
+import {formatEventDate} from './format-event-date';
+
+export {formatEventDate};
 
 /**
  * The event's date and time are wall-clock values (events.event_date + event_time):
@@ -10,15 +13,8 @@ export function useFormatEventDate() {
   const format = useFormatter();
 
   /** style 'long' for the invite card: "domingo, 29 de novembro · 13:00". */
-  return (date: string | null, time?: string | null, style: 'short' | 'long' = 'short') => {
-    if (!date) return '';
-    const hoursMinutes = time ? time.slice(0, 5) : '12:00';
-    const value = new Date(`${date}T${hoursMinutes}:00Z`);
-    const day = format.dateTime(value, {weekday: style, day: 'numeric', month: style, timeZone: 'UTC'});
-    if (!time) return day;
-    const hour = format.dateTime(value, {hour: 'numeric', minute: '2-digit', timeZone: 'UTC'});
-    return `${day} · ${hour}`;
-  };
+  return (date: string | null, time?: string | null, style: 'short' | 'long' = 'short') =>
+    formatEventDate(format, date, time, style);
 }
 
 /** Money in the currency stored on the event (events.currency). */

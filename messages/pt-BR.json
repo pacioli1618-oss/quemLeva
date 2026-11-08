@@ -293,5 +293,9 @@
   "Manage": {
     "checking": "Abrindo o evento como organizador…",
     "missingToken": "Este link de organizador está incompleto. Copie o link inteiro de novo."
+  },
+  "Preview": {
+    "cta": "Veja a lista e diga o que você leva",
+    "alt": "Convite para {title} no QuemLeva"
   }
 }

@@ -293,5 +293,9 @@
   "Manage": {
     "checking": "Opening the event as host…",
     "missingToken": "This host link is incomplete. Copy the whole link again."
+  },
+  "Preview": {
+    "cta": "See the list and say what you'll bring",
+    "alt": "Invitation to {title} on QuemLeva"
   }
 }

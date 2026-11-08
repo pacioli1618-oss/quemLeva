@@ -19,11 +19,20 @@ export function generateStaticParams() {
   return routing.locales.map((locale) => ({locale}));
 }
 
+// Absolute base for preview images (og:image must be absolute). On Vercel, Next falls back to
+// the production domain on its own; NEXT_PUBLIC_SITE_URL overrides it (docs/deploy.md).
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL;
+
 export async function generateMetadata(): Promise<Metadata> {
+  const locale = await getLocale();
   const t = await getTranslations('Metadata');
+  const image = {url: `/api/og?locale=${locale}`, width: 1200, height: 630, alt: t('title')};
   return {
+    metadataBase: siteUrl ? new URL(siteUrl) : undefined,
     title: t('title'),
     description: t('description'),
+    openGraph: {title: t('title'), description: t('description'), siteName: 'QuemLeva', type: 'website', images: [image]},
+    twitter: {card: 'summary_large_image', title: t('title'), description: t('description'), images: [image]},
     // Home-screen app on iPhone (Android reads app/manifest.ts).
     appleWebApp: {capable: true, title: 'QuemLeva', statusBarStyle: 'default'},
   };
