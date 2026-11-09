@@ -13,6 +13,7 @@ Production runs on **Vercel** (Next.js, no Vercel-specific code) with **Supabase
    | --- | --- |
    | `NEXT_PUBLIC_SUPABASE_URL` | `https://uqkyhzvdwynpkqdiuvyn.supabase.co` |
    | `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` | the publishable key (`.env.example`) |
+   | `NEXT_PUBLIC_CONTACT_EMAIL` | optional: contact shown on About, Privacy and Terms. Without it, those pages point to the GitHub issues page. |
    | `NEXT_PUBLIC_SITE_URL` | optional: `https://quemleva.gr1618.io`. Base of the link-preview image URL; without it Next uses the Vercel production domain. |
 
    Both are public by design: the browser calls the `ql_*` RPCs directly, and the tables are

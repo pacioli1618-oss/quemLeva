@@ -95,7 +95,8 @@
     "copyFailed": "No se pudo copiar. Mantén presionado el enlace para copiarlo.",
     "whatsapp": "Enviar por WhatsApp",
     "messageLabel": "Mensaje que se envía",
-    "messageCall": "Marca aquí lo que vas a llevar:"
+    "messageCallHost": "Armé la lista en QuemLeva. Abre el enlace y marca lo que vas a llevar (no hace falta registrarse):",
+    "messageCallGuest": "La lista está en QuemLeva. Abre el enlace y marca lo que vas a llevar (no hace falta registrarse):"
   },
   "Join": {
     "invitedLabel": "Te invitaron",
@@ -104,7 +105,8 @@
     "nameHint": "Solo el nombre, como te conoce la familia. Queda guardado en este teléfono.",
     "nameRequired": "Escribe tu nombre para entrar.",
     "invitedAs": "Esta invitación es para {name}.",
-    "submit": "Ver la lista"
+    "submit": "Ver la lista",
+    "trust": "Solo pedimos tu nombre. Sin registro, contraseña, teléfono ni pagos."
   },
   "EventList": {
     "summary": "{done} de {total} ítems asegurados",
@@ -187,7 +189,7 @@
     "inviteHint": "Cada invitado recibe un link solo para él, con el nombre ya cargado. Así ves quién lo abrió.",
     "inviteSubmit": "Crear invitación",
     "whatsappInvite": "WhatsApp",
-    "inviteMessage": "{name}, estás invitado: {title}.\nMarca aquí lo que vas a llevar:\n{url}",
+    "inviteMessage": "{name}, estás invitado: {title}.\nAbre el enlace y marca lo que vas a llevar (no hace falta registrarse):\n{url}",
     "confirmRemove": "¿Quitar a {name} y lo que marcó?",
     "confirmRemoveYes": "Sí, quitar",
     "empty": "Nadie respondió todavía. ¡Manda el link al grupo!",
@@ -298,5 +300,105 @@
   "Preview": {
     "cta": "Mira la lista y di qué llevas",
     "alt": "Invitación a {title} en QuemLeva"
+  },
+  "Legal": {
+    "about": "Acerca de",
+    "privacy": "Privacidad",
+    "terms": "Términos",
+    "linksLabel": "Acerca de QuemLeva",
+    "updated": "Actualizado el {date}",
+    "back": "Volver",
+    "contactTitle": "Contacto",
+    "contactBody": "Dudas, solicitudes sobre tus datos o algo que no funciona: <link>{contact}</link>."
+  },
+  "About": {
+    "title": "Acerca de QuemLeva",
+    "intro": "QuemLeva organiza quién lleva qué en asados, almuerzos, cumpleaños y fiestas de fin de año. Es gratis, sin registro y de código abierto.",
+    "sections": {
+      "safety": {
+        "title": "Cómo saber que es seguro",
+        "p1": "QuemLeva solo pide tu nombre. Nunca pide contraseña, código de verificación, teléfono, documento de identidad, datos de tarjeta ni pagos. Si una página te pide eso, no es QuemLeva.",
+        "p2": "El enlace te llega de alguien de tu grupo. Si tienes dudas, pregúntale a quien lo envió antes de abrirlo.",
+        "p3": "Los enlaces de QuemLeva empiezan con {host}."
+      },
+      "who": {
+        "title": "Quién lo hace",
+        "p1": "QuemLeva es un proyecto independiente, hecho en Brasil y mantenido por {operator}."
+      },
+      "code": {
+        "title": "Código abierto",
+        "p1": "El código es abierto, bajo la licencia AGPL-3.0, y cualquiera puede ver cómo funciona <repo>en GitHub</repo>."
+      }
+    }
+  },
+  "Privacy": {
+    "title": "Política de privacidad",
+    "intro": "Esta política explica, en lenguaje sencillo, qué datos guarda QuemLeva, para qué y por cuánto tiempo. QuemLeva no tiene registro y no vende ni comparte datos para publicidad.",
+    "sections": {
+      "collect": {
+        "title": "Qué guardamos",
+        "p1": "Los datos del evento que escribe quien lo organiza: nombre, fecha, hora, lugar, notas, cantidad de adultos y niños y la lista de ítems.",
+        "p2": "El nombre que cada persona escribe al entrar, su respuesta de asistencia, los acompañantes, lo que marcó para llevar, las notas y los montos gastados, cuando se informan.",
+        "p3": "Un código aleatorio del dispositivo, que te reconoce en el evento sin registro.",
+        "p4": "Para evitar abusos, registramos la creación de eventos con una versión cifrada (hash) de la dirección IP. Ese registro se borra en un máximo de 1 día."
+      },
+      "visibility": {
+        "title": "Quién ve qué",
+        "p1": "Quien tiene el enlace del evento ve la lista, los nombres de los participantes, las respuestas de asistencia, quién lleva cada ítem y los montos informados. Por eso, comparte el enlace solo con tu grupo.",
+        "p2": "El enlace de organizador permite editar el evento. Guárdalo solo para ti."
+      },
+      "device": {
+        "title": "En tu dispositivo",
+        "p1": "El navegador guarda el código del dispositivo, los enlaces de organizador y la lista de \"Mis eventos\", además de una cookie con el idioma elegido. No usamos cookies de publicidad ni de seguimiento."
+      },
+      "providers": {
+        "title": "Servicios que usamos",
+        "p1": "Supabase (base de datos, con servidores en São Paulo) y Vercel (alojamiento del sitio). Tratan los datos solo para que QuemLeva funcione y pueden guardar registros técnicos de acceso, como la dirección IP, según sus propias políticas.",
+        "p2": "Si quien organiza usa Spliit para dividir los gastos, lo que lleve allí sigue las reglas de Spliit."
+      },
+      "retention": {
+        "title": "Por cuánto tiempo",
+        "p1": "Los eventos se guardan mientras QuemLeva esté en línea, para que los enlaces sigan funcionando. Puedes pedir que se borren en cualquier momento."
+      },
+      "rights": {
+        "title": "Tus derechos",
+        "p1": "Puedes pedir ver, corregir o borrar tus datos, o un evento entero. Escribe al contacto de abajo e incluye el enlace del evento.",
+        "p2": "En la propia app puedes cambiar tu nombre entrando de nuevo, y quien organiza puede quitar participantes."
+      },
+      "controller": {
+        "title": "Responsable",
+        "p1": "El responsable de los datos es {operator}. Si esta política cambia, se actualiza la fecha de arriba."
+      }
+    }
+  },
+  "Terms": {
+    "title": "Términos de uso",
+    "intro": "Al usar QuemLeva, aceptas estos términos.",
+    "sections": {
+      "service": {
+        "title": "El servicio",
+        "p1": "QuemLeva es gratis y se ofrece tal cual, sin garantía de que funcione siempre o sin errores. Puede cambiar o cerrarse; siempre que sea posible, avisaremos antes."
+      },
+      "content": {
+        "title": "Lo que escribes",
+        "p1": "Eres responsable de lo que escribes en el evento. No uses QuemLeva para contenido ilegal, ofensivo o engañoso, ni para spam. Podemos quitar eventos que no cumplan estas reglas."
+      },
+      "links": {
+        "title": "Enlaces",
+        "p1": "Quien tiene el enlace del evento puede ver la lista y participar. Cuida dónde compartes el enlace y no difundas el enlace de organizador."
+      },
+      "payments": {
+        "title": "Pagos",
+        "p1": "QuemLeva no recibe ni intermedia pagos. Los montos y las cuentas entre las personas se arreglan entre ustedes."
+      },
+      "license": {
+        "title": "Código abierto",
+        "p1": "El código de QuemLeva está bajo la licencia AGPL-3.0."
+      },
+      "law": {
+        "title": "Ley aplicable",
+        "p1": "Estos términos se rigen por las leyes de Brasil."
+      }
+    }
   }
 }

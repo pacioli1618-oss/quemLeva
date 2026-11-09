@@ -95,7 +95,8 @@
     "copyFailed": "Couldn't copy. Press and hold the link to copy it.",
     "whatsapp": "Send on WhatsApp",
     "messageLabel": "Message that goes with it",
-    "messageCall": "Mark what you will bring here:"
+    "messageCallHost": "I made the list on QuemLeva. Open the link and pick what you'll bring (no sign-up needed):",
+    "messageCallGuest": "The list is on QuemLeva. Open the link and pick what you'll bring (no sign-up needed):"
   },
   "Join": {
     "invitedLabel": "You're invited",
@@ -104,7 +105,8 @@
     "nameHint": "Just your name, the way the family knows you. Saved on this phone.",
     "nameRequired": "Type your name to join.",
     "invitedAs": "This invite is for {name}.",
-    "submit": "See the list"
+    "submit": "See the list",
+    "trust": "We only ask for your name. No sign-up, password, phone number or payment."
   },
   "EventList": {
     "summary": "{done} of {total} items covered",
@@ -187,7 +189,7 @@
     "inviteHint": "Each guest gets their own link with their name filled in, so you can see who opened it.",
     "inviteSubmit": "Create invite",
     "whatsappInvite": "WhatsApp",
-    "inviteMessage": "{name}, you're invited: {title}.\nMark what you'll bring here:\n{url}",
+    "inviteMessage": "{name}, you're invited: {title}.\nOpen the link and pick what you'll bring (no sign-up needed):\n{url}",
     "confirmRemove": "Remove {name} and what they marked?",
     "confirmRemoveYes": "Yes, remove",
     "empty": "No replies yet. Send the link to the group!",
@@ -298,5 +300,105 @@
   "Preview": {
     "cta": "See the list and say what you'll bring",
     "alt": "Invitation to {title} on QuemLeva"
+  },
+  "Legal": {
+    "about": "About",
+    "privacy": "Privacy",
+    "terms": "Terms",
+    "linksLabel": "About QuemLeva",
+    "updated": "Updated {date}",
+    "back": "Back",
+    "contactTitle": "Contact",
+    "contactBody": "Questions, requests about your data, or something broken: <link>{contact}</link>."
+  },
+  "About": {
+    "title": "About QuemLeva",
+    "intro": "QuemLeva sorts out who brings what to barbecues, lunches, birthdays and holiday parties. It is free, needs no sign-up and is open source.",
+    "sections": {
+      "safety": {
+        "title": "How to tell it is safe",
+        "p1": "QuemLeva only asks for your name. It never asks for a password, verification code, phone number, ID number, card details or payment. If a page asks for any of that, it is not QuemLeva.",
+        "p2": "The link comes from someone in your group. If in doubt, ask whoever sent it before opening it.",
+        "p3": "QuemLeva links start with {host}."
+      },
+      "who": {
+        "title": "Who makes it",
+        "p1": "QuemLeva is an independent project, made in Brazil and maintained by {operator}."
+      },
+      "code": {
+        "title": "Open source",
+        "p1": "The code is open source under the AGPL-3.0 license, and anyone can check how it works <repo>on GitHub</repo>."
+      }
+    }
+  },
+  "Privacy": {
+    "title": "Privacy policy",
+    "intro": "This policy explains, in plain words, what data QuemLeva keeps, why and for how long. QuemLeva has no accounts and does not sell or share data for advertising.",
+    "sections": {
+      "collect": {
+        "title": "What we keep",
+        "p1": "The event details the organizer writes: name, date, time, place, notes, number of adults and kids, and the list of items.",
+        "p2": "The name each person writes when joining, their RSVP, plus-ones, what they picked to bring, notes and amounts spent, when given.",
+        "p3": "A random device code that recognizes you in the event without an account.",
+        "p4": "To prevent abuse, we log event creation with a scrambled version (hash) of the IP address. That log is deleted within 1 day."
+      },
+      "visibility": {
+        "title": "Who sees what",
+        "p1": "Anyone with the event link sees the list, participant names, RSVPs, who brings each item and the amounts given. So share the link only with your group.",
+        "p2": "The organizer link lets you edit the event. Keep it to yourself."
+      },
+      "device": {
+        "title": "On your device",
+        "p1": "Your browser stores the device code, organizer links and the \"My events\" list, plus a cookie with your chosen language. We use no advertising or tracking cookies."
+      },
+      "providers": {
+        "title": "Services we use",
+        "p1": "Supabase (database, with servers in São Paulo) and Vercel (website hosting). They process data only to run QuemLeva and may keep technical access logs, such as IP addresses, under their own policies.",
+        "p2": "If the organizer uses Spliit to split costs, whatever they take there follows Spliit's rules."
+      },
+      "retention": {
+        "title": "How long",
+        "p1": "Events are kept while QuemLeva is online, so links keep working. You can ask for deletion at any time."
+      },
+      "rights": {
+        "title": "Your rights",
+        "p1": "You can ask to see, correct or delete your data, or a whole event. Write to the contact below and include the event link.",
+        "p2": "In the app itself, you can change your name by joining again, and the organizer can remove participants."
+      },
+      "controller": {
+        "title": "Who is responsible",
+        "p1": "The data controller is {operator}. If this policy changes, the date at the top is updated."
+      }
+    }
+  },
+  "Terms": {
+    "title": "Terms of use",
+    "intro": "By using QuemLeva, you agree to these terms.",
+    "sections": {
+      "service": {
+        "title": "The service",
+        "p1": "QuemLeva is free and provided as is, with no guarantee that it will always work or be error-free. It may change or shut down; whenever possible, we will give notice first."
+      },
+      "content": {
+        "title": "What you write",
+        "p1": "You are responsible for what you write in an event. Do not use QuemLeva for illegal, offensive or misleading content, or for spam. We may remove events that break these rules."
+      },
+      "links": {
+        "title": "Links",
+        "p1": "Anyone with the event link can see the list and take part. Be careful where you share it, and do not share the organizer link."
+      },
+      "payments": {
+        "title": "Payments",
+        "p1": "QuemLeva does not receive or handle payments. Amounts and settling up are arranged among yourselves."
+      },
+      "license": {
+        "title": "Open source",
+        "p1": "QuemLeva's code is under the AGPL-3.0 license."
+      },
+      "law": {
+        "title": "Governing law",
+        "p1": "These terms are governed by the laws of Brazil."
+      }
+    }
   }
 }

@@ -101,6 +101,7 @@ Paths are short, lowercase, kebab-case English. They never include the locale (s
 | `/e/[slug]/invite/[inviteToken]` | Personal invite |
 | `/e/[slug]/manage#<hostToken>` | Host link: stores the token on the device, then opens the event |
 | `/my-events` | My events |
+| `/about`, `/privacy`, `/terms` | About (incl. how to tell a real link from a scam), privacy policy, terms. Operator and contact in `src/lib/site.ts`. |
 | `/api/og/[slug]`, `/api/og?locale=` | Link-preview image (event card, or the app's card). Under `/api` so the locale proxy skips it. |
 
 Link previews: `app/[locale]/e/[slug]/layout.tsx` sets the og/twitter tags for every page of an event,

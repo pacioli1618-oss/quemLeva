@@ -1,0 +1,20 @@
+.links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: 13px;
+  color: var(--ink-muted);
+}
+
+.links a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  /* Small text, but a comfortable tap target. */
+  padding: 10px 2px;
+}
+
+.links a:hover {
+  color: var(--ink);
+}

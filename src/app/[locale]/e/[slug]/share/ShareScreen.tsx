@@ -27,7 +27,7 @@ function ShareContent({slug, hostToken}: {slug: string; hostToken?: string}) {
   const isHost = Boolean(hostToken);
 
   const eventUrl = origin ? buildEventUrl(origin, slug) : '';
-  const message = useShareMessage(data?.event ?? null, eventUrl);
+  const message = useShareMessage(data?.event ?? null, eventUrl, isHost);
 
   return (
     <main className={styles.screen}>
@@ -83,13 +83,17 @@ function ShareContent({slug, hostToken}: {slug: string; hostToken?: string}) {
   );
 }
 
-/** "Churrasco de domingo · dom., 29 de nov. · 13:00 · Casa da Tia Rosa", the call to action, the link. */
-function useShareMessage(event: EventDetails | null, eventUrl: string) {
+/**
+ * "Churrasco de domingo · dom., 29 de nov. · 13:00 · Casa da Tia Rosa", the call to action, the link.
+ * Written in the first person: it goes out from the sender's own WhatsApp, which already shows who
+ * they are. The call says no sign-up is needed, so the link reads as an invite, not a trap.
+ */
+function useShareMessage(event: EventDetails | null, eventUrl: string, isHost: boolean) {
   const t = useTranslations('Share');
   const formatEventDate = useFormatEventDate();
   if (!event || !eventUrl) return '';
   const firstLine = [event.title, formatEventDate(event.eventDate, event.eventTime), event.location].filter(Boolean).join(' · ');
-  return `${firstLine}\n${t('messageCall')}\n${eventUrl}`;
+  return `${firstLine}\n${t(isHost ? 'messageCallHost' : 'messageCallGuest')}\n${eventUrl}`;
 }
 
 function HostLinkCard({url}: {url: string}) {

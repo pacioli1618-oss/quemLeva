@@ -110,3 +110,20 @@
   color: var(--ember-strong);
   text-align: center;
 }
+
+.trust {
+  margin: 0 auto;
+  max-width: 300px;
+  font-size: 13px;
+  line-height: 18px;
+  color: var(--ink-muted);
+  text-align: center;
+  text-wrap: balance;
+}
+
+.trust svg {
+  display: inline-block;
+  vertical-align: -3px;
+  margin-right: 4px;
+  color: var(--brand);
+}

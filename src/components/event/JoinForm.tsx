@@ -3,6 +3,7 @@
 import {useState, type FormEvent} from 'react';
 import {useTranslations} from 'next-intl';
 import {Logo} from '@/components/brand/Logo';
+import {LegalLinks} from '@/components/legal/LegalLinks';
 import {Button} from '@/components/ui/Button';
 import {SegmentedControl} from '@/components/ui/SegmentedControl';
 import {Stepper} from '@/components/ui/Stepper';
@@ -144,6 +145,15 @@ export function JoinForm({slug, view, isHost, inviteToken, initialName = '', onJ
           <Button type="submit" size="cta" isFullWidth isLoading={isSubmitting}>
             {t('submit')}
           </Button>
+          {/* People are wary of links in WhatsApp: say plainly what this page will never ask for. */}
+          <p className={styles.trust}>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <path d="M12 3l7 3v5c0 4.5-3 8.3-7 10-4-1.7-7-5.5-7-10V6z" />
+              <path d="M9 12l2 2 4-4" />
+            </svg>
+            {t('trust')}
+          </p>
+          <LegalLinks />
         </div>
       </form>
     </main>

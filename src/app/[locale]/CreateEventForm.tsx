@@ -3,6 +3,7 @@
 import {useState, type FormEvent} from 'react';
 import {useLocale, useTranslations} from 'next-intl';
 import {Button} from '@/components/ui/Button';
+import {LegalLinks} from '@/components/legal/LegalLinks';
 import {Card} from '@/components/ui/Card';
 import {ChipGroup} from '@/components/ui/Chip';
 import {Stepper} from '@/components/ui/Stepper';
@@ -148,6 +149,7 @@ export function CreateEventForm() {
           {t('submit')}
         </Button>
         <p className={styles.tagline}>{common('tagline')}</p>
+        <LegalLinks />
       </div>
     </form>
   );
