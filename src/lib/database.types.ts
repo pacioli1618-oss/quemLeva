@@ -44,6 +44,10 @@ export type Database = {
         }
         Returns: Json
       }
+      ql_delete_event: {
+        Args: { p_host_token: string; p_slug: string }
+        Returns: undefined
+      }
       ql_delete_item: {
         Args: { p_host_token: string; p_item_id: string; p_slug: string }
         Returns: undefined
@@ -87,6 +91,10 @@ export type Database = {
           p_slug: string
         }
         Returns: Json
+      }
+      ql_set_event_suspended: {
+        Args: { p_host_token: string; p_slug: string; p_suspended: boolean }
+        Returns: undefined
       }
       ql_set_rsvp: {
         Args: {

@@ -26,6 +26,8 @@ export type EventDetails = {
   currency: string;
   kind: EventKind;
   spliitGroupUrl: string | null;
+  /** Set while the host has the event suspended: guests can look but not change anything. */
+  suspendedAt: string | null;
   updatedAt: string;
 };
 
@@ -95,6 +97,7 @@ export type RawEvent = {
   currency: string;
   kind: EventKind;
   spliit_group_url: string | null;
+  suspended_at: string | null;
   updated_at: string;
 };
 export type RawClaim = {participant_id: string; name: string; quantity: number; note: string | null; amount_spent: number | null};
@@ -138,6 +141,8 @@ export function toEventDetails(raw: RawEvent): EventDetails {
     currency: raw.currency,
     kind: raw.kind,
     spliitGroupUrl: raw.spliit_group_url,
+    // Older responses (cached pages, fixtures) may not carry the field.
+    suspendedAt: raw.suspended_at ?? null,
     updatedAt: raw.updated_at,
   };
 }

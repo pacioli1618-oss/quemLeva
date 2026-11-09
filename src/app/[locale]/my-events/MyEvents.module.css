@@ -112,15 +112,19 @@
   gap: 6px;
 }
 
-.forget {
-  padding: 4px 0;
-  border: 0;
-  background: none;
-  font: inherit;
-  font-size: 13px;
-  color: var(--ink-muted);
-  text-decoration: underline;
-  cursor: pointer;
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 4px;
+}
+
+.rowError {
+  grid-column: 1 / -1;
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ember-strong);
 }
 
 .confirm {
@@ -137,6 +141,13 @@
   margin: 0;
   font-size: 14px;
   line-height: 20px;
+}
+
+.confirmNote {
+  margin: 0;
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--ink-muted);
 }
 
 .confirmWarning {

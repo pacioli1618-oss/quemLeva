@@ -12,16 +12,19 @@ import {useRouter} from '@/i18n/navigation';
 import type {EventView, ItemView} from '@/lib/api';
 import {getEventSummary} from '@/lib/event-summary';
 import {splitItemsByStatus} from '@/lib/item-status';
+import {SuspendedNotice} from './SuspendedNotice';
 import styles from './EventList.module.css';
 
 type EventListProps = {
   slug: string;
   view: Pick<EventView, 'event' | 'items' | 'participants' | 'me'>;
   isHost: boolean;
+  /** Reload after an action on this screen (reactivating a suspended event). */
+  onChanged?: () => void | Promise<void>;
 };
 
 /** Screen 5 · The event: what is still missing, what is covered, and "Eu levo". */
-export function EventList({slug, view, isHost}: EventListProps) {
+export function EventList({slug, view, isHost, onChanged}: EventListProps) {
   const t = useTranslations('EventList');
   const common = useTranslations('Common');
   const formatEventDate = useFormatEventDate();
@@ -45,6 +48,8 @@ export function EventList({slug, view, isHost}: EventListProps) {
           <h1 className={styles.title}>{event.title}</h1>
           {meta && <p className={styles.meta}>{meta}</p>}
         </header>
+
+        {event.suspendedAt && <SuspendedNotice slug={slug} onReactivated={onChanged} />}
 
         {summary.itemsTotal > 0 && (
           <Card className={styles.summary}>

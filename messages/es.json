@@ -235,7 +235,19 @@
     "forgetConfirm": "¿Quitar \"{title}\" de este teléfono? El evento sigue existiendo para los demás.",
     "forgetHostWarning": "Eres el organizador: sin el link de organizador guardado, ya no podrás editar este evento.",
     "forgetYes": "Sí, quitar",
-    "link": "Mis eventos"
+    "link": "Mis eventos",
+    "moreActions": "Más opciones para \"{title}\"",
+    "edit": "Editar evento",
+    "suspend": "Suspender evento",
+    "reactivate": "Reactivar evento",
+    "delete": "Eliminar evento",
+    "suspendConfirm": "¿Suspender \"{title}\"?",
+    "suspendHint": "Los invitados siguen viendo el evento, pero no pueden entrar, confirmar asistencia ni marcar lo que van a llevar. Puedes reactivarlo cuando quieras.",
+    "suspendYes": "Suspender",
+    "deleteConfirm": "¿Eliminar \"{title}\"?",
+    "deleteWarning": "Borra el evento para todos: la lista, los invitados y quién lleva qué. No se puede deshacer.",
+    "deleteYes": "Eliminar definitivamente",
+    "suspended": "Suspendido"
   },
   "Print": {
     "itemsTitle": "Lista de ítems",
@@ -283,7 +295,8 @@
     "quantity_exceeds_remaining": "{count, plural, =0 {Este ítem ya está asegurado.} one {Solo falta {amount} de este ítem.} other {Solo faltan {amount} de este ítem.}}",
     "rate_limited": "Creaste muchos eventos en poco tiempo. {period, select, day {Inténtalo de nuevo mañana.} other {Inténtalo de nuevo en una hora.}}",
     "network": "Sin conexión. Tu cambio no se guardó.",
-    "unknown": "Algo salió mal. Inténtalo de nuevo."
+    "unknown": "Algo salió mal. Inténtalo de nuevo.",
+    "event_suspended": "Quien organiza suspendió este evento. Por ahora no se pueden hacer cambios."
   },
   "LocaleSwitcher": {
     "label": "Idioma"
@@ -400,5 +413,15 @@
         "p1": "Estos términos se rigen por las leyes de Brasil."
       }
     }
+  },
+  "EditEvent": {
+    "title": "Editar evento",
+    "submit": "Guardar cambios"
+  },
+  "Suspended": {
+    "title": "Evento suspendido",
+    "guestBody": "Quien organiza pausó este evento por ahora. Hasta que lo reactive, no se puede entrar, marcar ítems ni confirmar asistencia.",
+    "hostBody": "Los invitados ven el evento, pero no pueden entrar, confirmar asistencia ni marcar ítems.",
+    "reactivate": "Reactivar"
   }
 }

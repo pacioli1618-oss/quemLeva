@@ -235,7 +235,19 @@
     "forgetConfirm": "Remove \"{title}\" from this phone? The event stays for everyone else.",
     "forgetHostWarning": "You're the host: without your saved host link, you won't be able to edit this event again.",
     "forgetYes": "Yes, remove",
-    "link": "My events"
+    "link": "My events",
+    "moreActions": "More options for \"{title}\"",
+    "edit": "Edit event",
+    "suspend": "Suspend event",
+    "reactivate": "Reactivate event",
+    "delete": "Delete event",
+    "suspendConfirm": "Suspend \"{title}\"?",
+    "suspendHint": "Guests can still see the event, but can't join, RSVP or pick what to bring. You can reactivate it anytime.",
+    "suspendYes": "Suspend",
+    "deleteConfirm": "Delete \"{title}\"?",
+    "deleteWarning": "Deletes the event for everyone: the list, the guests and who brings what. This can't be undone.",
+    "deleteYes": "Delete for good",
+    "suspended": "Suspended"
   },
   "Print": {
     "itemsTitle": "Item list",
@@ -283,7 +295,8 @@
     "quantity_exceeds_remaining": "{count, plural, =0 {This item is already covered.} other {Only {amount} still needed for this item.}}",
     "rate_limited": "You've created a lot of events in a short time. {period, select, day {Try again tomorrow.} other {Try again in an hour.}}",
     "network": "You're offline. Your change wasn't saved.",
-    "unknown": "Something went wrong. Try again."
+    "unknown": "Something went wrong. Try again.",
+    "event_suspended": "The organizer has suspended this event. Changes are paused for now."
   },
   "LocaleSwitcher": {
     "label": "Language"
@@ -400,5 +413,15 @@
         "p1": "These terms are governed by the laws of Brazil."
       }
     }
+  },
+  "EditEvent": {
+    "title": "Edit event",
+    "submit": "Save changes"
+  },
+  "Suspended": {
+    "title": "Event suspended",
+    "guestBody": "The organizer has paused this event for now. Until it's reactivated, you can't join, pick items or RSVP.",
+    "hostBody": "Guests can see the event, but can't join, RSVP or pick items.",
+    "reactivate": "Reactivate"
   }
 }

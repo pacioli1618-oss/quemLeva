@@ -10,7 +10,7 @@ import {useStoredEvent} from '@/hooks/use-stored-event';
 import {getRpcErrorCode, useRpcErrorMessage} from '@/i18n/errors';
 import {useRouter} from '@/i18n/navigation';
 import {openInvite} from '@/lib/api';
-import {rememberEvent} from '@/lib/device-store';
+import {rememberEvent, updateStoredEvent} from '@/lib/device-store';
 import styles from './EventScreen.module.css';
 
 type EventScreenProps = {
@@ -46,6 +46,12 @@ function EventContent({slug, hostToken, inviteToken}: EventScreenProps & {hostTo
     });
   }, [slug, data, me, isHost]);
 
+  // The host may open the event without having joined: still keep title, date and suspension fresh.
+  useEffect(() => {
+    if (!data) return;
+    updateStoredEvent(slug, {title: data.event.title, eventDate: data.event.eventDate, isSuspended: Boolean(data.event.suspendedAt)});
+  }, [slug, data]);
+
   // Once joined, an invite link has done its job: show the plain event address.
   useEffect(() => {
     if (me && inviteToken) router.replace(`/e/${slug}`);
@@ -67,11 +73,12 @@ function EventContent({slug, hostToken, inviteToken}: EventScreenProps & {hostTo
         inviteToken={inviteToken}
         initialName={invitedName ?? ''}
         onJoined={refresh}
+        onChanged={refresh}
       />
     );
   }
 
-  return <EventList slug={slug} view={data} isHost={isHost} />;
+  return <EventList slug={slug} view={data} isHost={isHost} onChanged={refresh} />;
 }
 
 /** undefined while loading; null when the invite is invalid (the plain join form still works). */

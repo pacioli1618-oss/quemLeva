@@ -155,6 +155,16 @@ export async function updateEvent(slug: string, hostToken: string, patch: EventP
   await call('ql_update_event', {p_slug: slug, p_host_token: hostToken, p_patch: toEventPatchJson(patch)});
 }
 
+/** Suspended: guests still see the event but can't join, RSVP or claim (error event_suspended). */
+export async function setEventSuspended(slug: string, hostToken: string, isSuspended: boolean) {
+  await call('ql_set_event_suspended', {p_slug: slug, p_host_token: hostToken, p_suspended: isSuspended});
+}
+
+/** Deletes the event and everything in it, for everyone. Can't be undone. */
+export async function deleteEvent(slug: string, hostToken: string) {
+  await call('ql_delete_event', {p_slug: slug, p_host_token: hostToken});
+}
+
 export type ItemInput = {
   name: string;
   unit?: string;

@@ -2,6 +2,7 @@
 
 import {useEffect, useRef, useState, type FormEvent} from 'react';
 import {useTranslations} from 'next-intl';
+import {SuspendedNotice} from '@/components/event/SuspendedNotice';
 import {TabBar} from '@/components/event/TabBar';
 import {Button, ButtonLink, buttonClassName} from '@/components/ui/Button';
 import {Card} from '@/components/ui/Card';
@@ -81,7 +82,10 @@ function GuestsContent({slug, hostToken}: {slug: string; hostToken?: string}) {
           </div>
         </Card>
 
-        {myself && <MyAnswer key={myself.id} slug={slug} participant={myself} onSaved={refresh} />}
+        {data.event.suspendedAt && <SuspendedNotice slug={slug} onReactivated={refresh} />}
+
+        {/* While suspended the server refuses RSVP changes, so the answer is not shown as editable. */}
+        {myself && !data.event.suspendedAt && <MyAnswer key={myself.id} slug={slug} participant={myself} onSaved={refresh} />}
 
         {isHost && hostToken && <InviteForm slug={slug} hostToken={hostToken} onInvited={refresh} />}
 

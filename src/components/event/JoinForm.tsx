@@ -13,6 +13,7 @@ import {useRpcErrorMessage} from '@/i18n/errors';
 import {joinEvent, setRsvp, type EventView, type Rsvp} from '@/lib/api';
 import {getDeviceId, rememberEvent} from '@/lib/device-store';
 import {getEventSummary} from '@/lib/event-summary';
+import {SuspendedNotice} from './SuspendedNotice';
 import styles from './JoinForm.module.css';
 
 type JoinFormProps = {
@@ -23,10 +24,11 @@ type JoinFormProps = {
   inviteToken?: string;
   initialName?: string;
   onJoined: () => void | Promise<void>;
+  onChanged?: () => void | Promise<void>;
 };
 
 /** Screen 4 · Join the event: a name (saved on this phone), RSVP and plus-ones. */
-export function JoinForm({slug, view, isHost, inviteToken, initialName = '', onJoined}: JoinFormProps) {
+export function JoinForm({slug, view, isHost, inviteToken, initialName = '', onJoined, onChanged}: JoinFormProps) {
   const t = useTranslations('Join');
   const rsvpText = useTranslations('Rsvp');
   const list = useTranslations('EventList');
@@ -92,70 +94,80 @@ export function JoinForm({slug, view, isHost, inviteToken, initialName = '', onJ
         </div>
       </section>
 
-      <form className={styles.form} onSubmit={handleSubmit} noValidate>
-        <TextField
-          className={styles.nameField}
-          label={t('whoAreYou')}
-          placeholder={t('namePlaceholder')}
-          hint={inviteToken && initialName ? t('invitedAs', {name: initialName}) : t('nameHint')}
-          value={name}
-          onChange={(changeEvent) => {
-            setName(changeEvent.target.value);
-            if (nameError) setNameError(null);
-          }}
-          maxLength={60}
-          autoComplete="given-name"
-          enterKeyHint="go"
-          error={nameError}
-        />
-
-        <div className={styles.rsvp}>
-          <span className={styles.rsvpLabel} aria-hidden="true">
-            {rsvpText('question')}
-          </span>
-          <SegmentedControl<Rsvp>
-            label={rsvpText('question')}
-            value={rsvp}
-            onChange={setRsvpChoice}
-            options={[
-              {value: 'yes', label: rsvpText('yes')},
-              {value: 'maybe', label: rsvpText('maybe')},
-              {value: 'no', label: rsvpText('no')},
-            ]}
+      {/* Suspended: nobody can join until the host reactivates; the host can do it right here. */}
+      {event.suspendedAt ? (
+        <div className={styles.form}>
+          <SuspendedNotice slug={slug} onReactivated={onChanged} />
+          <div className={styles.footer}>
+            <LegalLinks />
+          </div>
+        </div>
+      ) : (
+        <form className={styles.form} onSubmit={handleSubmit} noValidate>
+          <TextField
+            className={styles.nameField}
+            label={t('whoAreYou')}
+            placeholder={t('namePlaceholder')}
+            hint={inviteToken && initialName ? t('invitedAs', {name: initialName}) : t('nameHint')}
+            value={name}
+            onChange={(changeEvent) => {
+              setName(changeEvent.target.value);
+              if (nameError) setNameError(null);
+            }}
+            maxLength={60}
+            autoComplete="given-name"
+            enterKeyHint="go"
+            error={nameError}
           />
-          {rsvp !== 'no' && (
-            <Stepper
-              label={rsvpText('bringingOthers')}
-              value={plusOnes}
-              onChange={setPlusOnes}
-              max={50}
-              decreaseLabel={rsvpText('decreasePlusOnes')}
-              increaseLabel={rsvpText('increasePlusOnes')}
-              formatValue={(value) => (value > 0 ? `+${value}` : '0')}
-            />
-          )}
-        </div>
 
-        <div className={styles.footer}>
-          {formError && (
-            <p className={styles.error} role="alert">
-              {formError}
+          <div className={styles.rsvp}>
+            <span className={styles.rsvpLabel} aria-hidden="true">
+              {rsvpText('question')}
+            </span>
+            <SegmentedControl<Rsvp>
+              label={rsvpText('question')}
+              value={rsvp}
+              onChange={setRsvpChoice}
+              options={[
+                {value: 'yes', label: rsvpText('yes')},
+                {value: 'maybe', label: rsvpText('maybe')},
+                {value: 'no', label: rsvpText('no')},
+              ]}
+            />
+            {rsvp !== 'no' && (
+              <Stepper
+                label={rsvpText('bringingOthers')}
+                value={plusOnes}
+                onChange={setPlusOnes}
+                max={50}
+                decreaseLabel={rsvpText('decreasePlusOnes')}
+                increaseLabel={rsvpText('increasePlusOnes')}
+                formatValue={(value) => (value > 0 ? `+${value}` : '0')}
+              />
+            )}
+          </div>
+
+          <div className={styles.footer}>
+            {formError && (
+              <p className={styles.error} role="alert">
+                {formError}
+              </p>
+            )}
+            <Button type="submit" size="cta" isFullWidth isLoading={isSubmitting}>
+              {t('submit')}
+            </Button>
+            {/* People are wary of links in WhatsApp: say plainly what this page will never ask for. */}
+            <p className={styles.trust}>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M12 3l7 3v5c0 4.5-3 8.3-7 10-4-1.7-7-5.5-7-10V6z" />
+                <path d="M9 12l2 2 4-4" />
+              </svg>
+              {t('trust')}
             </p>
-          )}
-          <Button type="submit" size="cta" isFullWidth isLoading={isSubmitting}>
-            {t('submit')}
-          </Button>
-          {/* People are wary of links in WhatsApp: say plainly what this page will never ask for. */}
-          <p className={styles.trust}>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-              <path d="M12 3l7 3v5c0 4.5-3 8.3-7 10-4-1.7-7-5.5-7-10V6z" />
-              <path d="M9 12l2 2 4-4" />
-            </svg>
-            {t('trust')}
-          </p>
-          <LegalLinks />
-        </div>
-      </form>
+            <LegalLinks />
+          </div>
+        </form>
+      )}
     </main>
   );
 }

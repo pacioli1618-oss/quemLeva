@@ -11,6 +11,7 @@ export const rpcErrorCodes = [
   'participant_not_found',
   'quantity_exceeds_remaining',
   'rate_limited',
+  'event_suspended',
 ] as const;
 export type RpcErrorCode = (typeof rpcErrorCodes)[number];
 

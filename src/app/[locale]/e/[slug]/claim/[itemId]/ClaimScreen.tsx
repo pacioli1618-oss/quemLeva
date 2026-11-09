@@ -2,6 +2,7 @@
 
 import {useEffect, useState, type FormEvent} from 'react';
 import {useFormatter, useTranslations} from 'next-intl';
+import {SuspendedNotice} from '@/components/event/SuspendedNotice';
 import {Button, ButtonLink} from '@/components/ui/Button';
 import {Chip} from '@/components/ui/Chip';
 import {ProgressBar} from '@/components/ui/ProgressBar';
@@ -41,6 +42,16 @@ function ClaimContent({slug, itemId, hostToken}: ClaimScreenProps & {hostToken?:
 
   if (!data) return error ? <Status message={rpcErrorMessage(error as {message?: string})} slug={slug} /> : <Status />;
   if (!isJoined) return <Status />;
+
+  // Suspended: "Eu levo" is paused (the server refuses it too); the host can reactivate here.
+  if (data.event.suspendedAt) {
+    return (
+      <main className={styles.status}>
+        <SuspendedNotice slug={slug} onReactivated={refresh} />
+        <BackToEvent slug={slug} />
+      </main>
+    );
+  }
 
   const item = data.items.find((candidate) => candidate.id === itemId);
   if (!item) return <Status message={rpcErrorMessage({message: 'item_not_found'})} slug={slug} />;
@@ -241,6 +252,15 @@ function ClaimForm({slug, view, item, onConflict}: ClaimFormProps) {
   );
 }
 
+function BackToEvent({slug}: {slug: string}) {
+  const common = useTranslations('Common');
+  return (
+    <ButtonLink href={`/e/${slug}`} variant="secondary">
+      {common('back')}
+    </ButtonLink>
+  );
+}
+
 function Status({message, slug}: {message?: string; slug?: string}) {
   const common = useTranslations('Common');
   return (
@@ -248,11 +268,7 @@ function Status({message, slug}: {message?: string; slug?: string}) {
       <p role={message ? 'alert' : 'status'} className={message ? styles.error : styles.statusText}>
         {message ?? common('loading')}
       </p>
-      {message && slug && (
-        <ButtonLink href={`/e/${slug}`} variant="secondary">
-          {common('back')}
-        </ButtonLink>
-      )}
+      {message && slug && <BackToEvent slug={slug} />}
     </main>
   );
 }

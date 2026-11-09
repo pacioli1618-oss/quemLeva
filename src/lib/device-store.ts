@@ -17,6 +17,8 @@ export type StoredEvent = {
   /** Host only. This is the only copy: the server keeps just its hash. */
   hostToken?: string;
   participantId?: string;
+  /** Last known suspension state, so "My events" can label the event and offer "Reactivate". */
+  isSuspended?: boolean;
   lastOpenedAt: string;
 };
 
@@ -110,6 +112,16 @@ export function rememberEvent(event: Omit<StoredEvent, 'lastOpenedAt'>) {
   };
   // New objects (not in-place edits) so React snapshots see the change.
   writeStore({...store, events: {...store.events, [event.slug]: next}});
+}
+
+/** Refreshes what "My events" shows (title, date, suspension) without touching role or tokens. */
+export function updateStoredEvent(slug: string, patch: Partial<Pick<StoredEvent, 'title' | 'eventDate' | 'isSuspended'>>) {
+  const store = readStore();
+  const previous = store.events[slug];
+  if (!previous) return;
+  const changed = (Object.keys(patch) as (keyof typeof patch)[]).some((key) => previous[key] !== patch[key]);
+  if (!changed) return;
+  writeStore({...store, events: {...store.events, [slug]: {...previous, ...patch}}});
 }
 
 export function forgetEvent(slug: string) {
