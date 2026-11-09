@@ -352,7 +352,7 @@
         "title": "What we keep",
         "p1": "The event details the organizer writes: name, date, time, place, notes, number of adults and kids, and the list of items.",
         "p2": "The name each person writes when joining, their RSVP, plus-ones, what they picked to bring, notes and amounts spent, when given.",
-        "p3": "A random device code that recognizes you in the event without an account.",
+        "p3": "A random device code that recognizes you in the event without an account. It also lets us count, without identifying anyone, how many organizers come back to create events.",
         "p4": "To prevent abuse, we log event creation with a scrambled version (hash) of the IP address. That log is deleted within 1 day."
       },
       "visibility": {

@@ -352,7 +352,7 @@
         "title": "O que guardamos",
         "p1": "Os dados do evento que o organizador escreve: nome, data, horário, local, observações, número de adultos e crianças e a lista de itens.",
         "p2": "O nome que cada pessoa escreve ao entrar, a resposta de presença, os acompanhantes, o que marcou para levar, as observações e os valores gastos, quando informados.",
-        "p3": "Um código aleatório do aparelho, que reconhece você no evento sem cadastro.",
+        "p3": "Um código aleatório do aparelho, que reconhece você no evento sem cadastro. Ele também serve para contar, sem identificar ninguém, quantos organizadores voltam a criar eventos.",
         "p4": "Para evitar abuso, registramos a criação de eventos com uma versão embaralhada (hash) do endereço IP. Esse registro é apagado em até 1 dia."
       },
       "visibility": {
