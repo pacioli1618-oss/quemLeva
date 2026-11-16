@@ -423,5 +423,16 @@
     "guestBody": "The organizer has paused this event for now. Until it's reactivated, you can't join, pick items or RSVP.",
     "hostBody": "Guests can see the event, but can't join, RSVP or pick items.",
     "reactivate": "Reactivate"
+  },
+  "Install": {
+    "button": "Add to home screen",
+    "title": "Add to home screen",
+    "intro": "QuemLeva then sits with your other apps and opens straight to your events, no link to find.",
+    "ios1": "Tap the Share button (the square with an arrow pointing up) in Safari's toolbar.",
+    "ios2": "Scroll down and tap \"Add to Home Screen\".",
+    "ios3": "Tap \"Add\". The QuemLeva icon shows up on your home screen.",
+    "menu1": "Open the browser menu (the three dots ⋮).",
+    "menu2": "Tap \"Add to Home screen\" or \"Install app\" and confirm.",
+    "done": "Got it"
   }
 }

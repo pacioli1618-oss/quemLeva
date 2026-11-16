@@ -423,5 +423,16 @@
     "guestBody": "O organizador pausou este evento por enquanto. Até ele reativar, não dá para entrar, marcar itens nem confirmar presença.",
     "hostBody": "Os convidados veem o evento, mas não conseguem entrar, confirmar presença nem marcar itens.",
     "reactivate": "Reativar"
+  },
+  "Install": {
+    "button": "Fixar na tela do celular",
+    "title": "Fixar na tela do celular",
+    "intro": "Assim o QuemLeva fica junto dos seus apps e abre direto nos seus eventos, sem precisar procurar o link.",
+    "ios1": "Toque no botão Compartilhar (o quadrado com uma seta para cima), na barra do Safari.",
+    "ios2": "Role a lista e toque em \"Adicionar à Tela de Início\".",
+    "ios3": "Toque em \"Adicionar\". O ícone do QuemLeva aparece na tela do celular.",
+    "menu1": "Abra o menu do navegador (os três pontinhos ⋮).",
+    "menu2": "Toque em \"Adicionar à tela inicial\" ou \"Instalar app\" e confirme.",
+    "done": "Entendi"
   }
 }

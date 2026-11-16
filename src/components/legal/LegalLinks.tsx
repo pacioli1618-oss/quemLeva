@@ -1,17 +1,21 @@
 import {useTranslations} from 'next-intl';
 import {Link} from '@/i18n/navigation';
+import {InstallButton} from '@/components/InstallButton';
 import styles from './LegalLinks.module.css';
 
-/** "Sobre · Privacidade · Termos": small footer links on the home and join screens. */
+/** "Fixar na tela do celular" + "Sobre · Privacidade · Termos": the footer of the main screens. */
 export function LegalLinks({className}: {className?: string}) {
   const t = useTranslations('Legal');
   return (
-    <nav className={[styles.links, className].filter(Boolean).join(' ')} aria-label={t('linksLabel')}>
-      <Link href="/about">{t('about')}</Link>
-      <span aria-hidden="true">·</span>
-      <Link href="/privacy">{t('privacy')}</Link>
-      <span aria-hidden="true">·</span>
-      <Link href="/terms">{t('terms')}</Link>
-    </nav>
+    <>
+      <InstallButton />
+      <nav className={[styles.links, className].filter(Boolean).join(' ')} aria-label={t('linksLabel')}>
+        <Link href="/about">{t('about')}</Link>
+        <span aria-hidden="true">·</span>
+        <Link href="/privacy">{t('privacy')}</Link>
+        <span aria-hidden="true">·</span>
+        <Link href="/terms">{t('terms')}</Link>
+      </nav>
+    </>
   );
 }
