@@ -15,7 +15,8 @@ export default function LocaleSwitcher() {
 
   return (
     <label style={{display: 'inline-flex', alignItems: 'center', gap: 6, fontSize: 13, color: 'var(--ink-soft)'}}>
-      <span>{t('label')}</span>
+      {/* Visually hidden: the language names already say what this is, and the theme button needs the room. */}
+      <span style={{position: 'absolute', width: 1, height: 1, overflow: 'hidden', clip: 'rect(0 0 0 0)', whiteSpace: 'nowrap'}}>{t('label')}</span>
       <select
         value={locale}
         disabled={isPending}

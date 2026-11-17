@@ -32,12 +32,10 @@
 .primary:hover:not(:disabled) {
   background: var(--brand-strong);
 }
-@media (prefers-color-scheme: dark) {
-  /* brand-strong is a light tint in dark mode; keep the button green and lift it slightly. */
-  .primary:hover:not(:disabled) {
-    background: var(--brand);
-    opacity: 0.9;
-  }
+/* brand-strong is a light tint in dark mode; keep the button green and lift it slightly. */
+:global(:root[data-theme='dark']) .primary:hover:not(:disabled) {
+  background: var(--brand);
+  opacity: 0.9;
 }
 
 .secondary {

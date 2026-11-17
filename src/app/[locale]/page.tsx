@@ -1,6 +1,6 @@
 import {useTranslations} from 'next-intl';
 import {Logo} from '@/components/brand/Logo';
-import LocaleSwitcher from '@/components/LocaleSwitcher';
+import {HeaderControls} from '@/components/HeaderControls';
 import {MyEventsLink} from '@/components/MyEventsLink';
 import {CreateEventForm} from './CreateEventForm';
 import styles from './CreateEvent.module.css';
@@ -13,7 +13,7 @@ export default function CreateEventPage() {
     <main className={styles.screen}>
       <header className={styles.header}>
         <Logo />
-        <LocaleSwitcher />
+        <HeaderControls />
       </header>
       <MyEventsLink className={styles.myEvents} />
       <section className={styles.intro}>

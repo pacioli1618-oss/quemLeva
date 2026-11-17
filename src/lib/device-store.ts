@@ -6,6 +6,8 @@
 //
 // Browser only. Do not import from Server Components.
 
+import {isThemeChoice, THEME_STORAGE_KEY, type ThemeChoice} from './theme';
+
 const STORAGE_KEY = 'quemleva';
 const STORE_VERSION = 1;
 
@@ -170,5 +172,26 @@ export function importStore(encoded: string): boolean {
     return true;
   } catch {
     return false;
+  }
+}
+
+// Theme choice (src/lib/theme.ts). Its own key, read before the first paint by the inline script.
+
+export function readThemeChoice(): ThemeChoice {
+  try {
+    const value = window.localStorage.getItem(THEME_STORAGE_KEY);
+    return isThemeChoice(value) ? value : 'auto';
+  } catch {
+    return 'auto';
+  }
+}
+
+/** "auto" removes the key: the device decides again. */
+export function writeThemeChoice(choice: ThemeChoice) {
+  try {
+    if (choice === 'auto') window.localStorage.removeItem(THEME_STORAGE_KEY);
+    else window.localStorage.setItem(THEME_STORAGE_KEY, choice);
+  } catch {
+    // Nothing to do: this browser can't keep the choice, so the device setting stays in charge.
   }
 }

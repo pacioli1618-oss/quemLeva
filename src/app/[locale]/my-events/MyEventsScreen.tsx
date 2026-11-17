@@ -3,7 +3,7 @@
 import {useMemo, useState} from 'react';
 import {useTranslations} from 'next-intl';
 import {Logo} from '@/components/brand/Logo';
-import LocaleSwitcher from '@/components/LocaleSwitcher';
+import {HeaderControls} from '@/components/HeaderControls';
 import {Button, ButtonLink} from '@/components/ui/Button';
 import {ActionMenu, type ActionMenuItem} from '@/components/ui/ActionMenu';
 import {Tag} from '@/components/ui/Tag';
@@ -29,7 +29,7 @@ export function MyEventsScreen() {
     <main className={styles.screen}>
       <header className={styles.header}>
         <Logo />
-        <LocaleSwitcher />
+        <HeaderControls />
       </header>
 
       <div className={styles.titleRow}>

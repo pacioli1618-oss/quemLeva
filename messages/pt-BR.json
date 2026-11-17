@@ -301,6 +301,9 @@
   "LocaleSwitcher": {
     "label": "Idioma"
   },
+  "ThemeSwitcher": {
+    "label": "Tema: {choice, select, light {claro} dark {escuro} other {automático, segue o aparelho}}. Toque para mudar."
+  },
   "NotFound": {
     "title": "Página não encontrada",
     "body": "Confira o link ou crie um evento novo.",
