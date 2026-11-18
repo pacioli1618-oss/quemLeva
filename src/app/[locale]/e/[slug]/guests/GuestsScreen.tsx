@@ -20,6 +20,7 @@ import {
   inviteParticipant,
   removeParticipant,
   setRsvp,
+  updateParticipant,
   type EventDetails,
   type HostParticipantView,
   type ParticipantView,
@@ -105,7 +106,7 @@ function GuestsContent({slug, hostToken}: {slug: string; hostToken?: string}) {
                   participant={participant}
                   isMe={participant.id === me}
                   hostToken={hostToken}
-                  onRemoved={refresh}
+                  onChanged={refresh}
                 />
               ))}
             </ul>
@@ -276,16 +277,34 @@ type GuestRowProps = {
   event: EventDetails;
   participant: ParticipantView | HostParticipantView;
   isMe: boolean;
-  /** Present only for the host: unlocks tracking, invite links and removal. */
+  /** Present only for the host: unlocks tracking, invite links, editing and removal. */
   hostToken?: string;
-  onRemoved: () => Promise<void>;
+  onChanged: () => Promise<void>;
 };
 
-function GuestRow({slug, event, participant, isMe, hostToken, onRemoved}: GuestRowProps) {
+function GuestRow({slug, event, participant, isMe, hostToken, onChanged}: GuestRowProps) {
   const t = useTranslations('Guests');
   const common = useTranslations('Common');
   const origin = useOrigin();
+  const [isEditing, setIsEditing] = useState(false);
   const hostData = hostToken && 'isLinked' in participant ? participant : null;
+
+  if (isEditing && hostToken) {
+    return (
+      <li className={styles.row}>
+        <EditGuestForm
+          slug={slug}
+          hostToken={hostToken}
+          participant={participant}
+          onCancel={() => setIsEditing(false)}
+          onSaved={async () => {
+            setIsEditing(false);
+            await onChanged();
+          }}
+        />
+      </li>
+    );
+  }
 
   // The invite link is useful until someone opens it on their phone and joins.
   const inviteUrl =
@@ -328,11 +347,131 @@ function GuestRow({slug, event, participant, isMe, hostToken, onRemoved}: GuestR
             </>
           )}
           {hostToken && !isMe && (
-            <RemoveButton slug={slug} hostToken={hostToken} participant={participant} onRemoved={onRemoved} />
+            <>
+              <Button
+                variant="ghost"
+                onClick={() => setIsEditing(true)}
+                aria-label={t('editLabel', {name: participant.name})}
+              >
+                {common('edit')}
+              </Button>
+              <RemoveButton slug={slug} hostToken={hostToken} participant={participant} onRemoved={onChanged} />
+            </>
           )}
         </div>
       )}
     </li>
+  );
+}
+
+/**
+ * Host only: fixes a guest's name and answers for them (someone who replied by phone).
+ * Saves on a tap, unlike "Sua resposta", because it changes someone else's data.
+ * Not offered on the host's own row: "Sua resposta" already covers it.
+ */
+function EditGuestForm({
+  slug,
+  hostToken,
+  participant,
+  onCancel,
+  onSaved,
+}: {
+  slug: string;
+  hostToken: string;
+  participant: ParticipantView;
+  onCancel: () => void;
+  onSaved: () => Promise<void>;
+}) {
+  const t = useTranslations('Guests');
+  const rsvpText = useTranslations('Rsvp');
+  const common = useTranslations('Common');
+  const join = useTranslations('Join');
+  const rpcErrorMessage = useRpcErrorMessage();
+  const [name, setName] = useState(participant.name);
+  const [rsvp, setRsvpChoice] = useState<Rsvp | null>(participant.rsvp);
+  const [plusOnes, setPlusOnes] = useState(participant.rsvp === 'no' ? 0 : participant.plusOnes);
+  const [nameError, setNameError] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
+  const [isSaving, setIsSaving] = useState(false);
+
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const trimmedName = name.trim();
+    if (!trimmedName) {
+      setNameError(join('nameRequired'));
+      return;
+    }
+    setError(null);
+    setIsSaving(true);
+    try {
+      await updateParticipant({
+        slug,
+        hostToken,
+        participantId: participant.id,
+        name: trimmedName,
+        rsvp,
+        plusOnes: rsvp === null || rsvp === 'no' ? 0 : plusOnes,
+      });
+      await onSaved();
+    } catch (failure) {
+      setError(rpcErrorMessage(failure as {message?: string}));
+      setIsSaving(false);
+    }
+  }
+
+  return (
+    <form
+      className={styles.editForm}
+      onSubmit={handleSubmit}
+      noValidate
+      aria-label={t('editLabel', {name: participant.name})}
+    >
+      <TextField
+        label={t('inviteName')}
+        value={name}
+        onChange={(changeEvent) => {
+          setName(changeEvent.target.value);
+          if (nameError) setNameError(null);
+        }}
+        maxLength={60}
+        autoComplete="off"
+        error={nameError}
+      />
+      <SegmentedControl<Rsvp>
+        label={t('editRsvp')}
+        value={rsvp}
+        onChange={setRsvpChoice}
+        options={[
+          {value: 'yes', label: t('status.yes')},
+          {value: 'maybe', label: t('status.maybe')},
+          {value: 'no', label: t('status.no')},
+        ]}
+      />
+      {rsvp !== null && rsvp !== 'no' && (
+        <Stepper
+          label={rsvpText('plusOnes')}
+          value={plusOnes}
+          onChange={setPlusOnes}
+          max={50}
+          decreaseLabel={rsvpText('decreasePlusOnes')}
+          increaseLabel={rsvpText('increasePlusOnes')}
+          formatValue={(value) => (value > 0 ? `+${value}` : '0')}
+        />
+      )}
+      {error && (
+        <p className={styles.answerError} role="alert">
+          {error}
+        </p>
+      )}
+      <div className={styles.rowActions}>
+        <Button type="button" variant="secondary" onClick={onCancel} disabled={isSaving}>
+          {common('cancel')}
+        </Button>
+        <Button type="submit" isLoading={isSaving}>
+          {common('save')}
+        </Button>
+      </div>
+    </form>
   );
 }
 

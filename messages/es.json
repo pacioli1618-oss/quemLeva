@@ -193,7 +193,9 @@
     "confirmRemove": "¿Quitar a {name} y lo que marcó?",
     "confirmRemoveYes": "Sí, quitar",
     "empty": "Nadie respondió todavía. ¡Manda el link al grupo!",
-    "joinToAnswer": "Entra al evento para responder."
+    "joinToAnswer": "Entra al evento para responder.",
+    "editLabel": "Editar a {name}",
+    "editRsvp": "Respuesta"
   },
   "Expenses": {
     "title": "Gastos",

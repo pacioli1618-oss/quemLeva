@@ -193,7 +193,9 @@
     "confirmRemove": "Remove {name} and what they marked?",
     "confirmRemoveYes": "Yes, remove",
     "empty": "No replies yet. Send the link to the group!",
-    "joinToAnswer": "Join the event to answer."
+    "joinToAnswer": "Join the event to answer.",
+    "editLabel": "Edit {name}",
+    "editRsvp": "Answer"
   },
   "Expenses": {
     "title": "Expenses",

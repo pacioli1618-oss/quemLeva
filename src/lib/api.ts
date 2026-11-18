@@ -224,6 +224,26 @@ export async function inviteParticipant(slug: string, hostToken: string, name: s
   return {participantId: raw.participant_id, inviteToken: raw.invite_token};
 }
 
+/** Host only: fixes a guest's name and answer. rsvp null = no answer yet; 'no' clears plus-ones. */
+export async function updateParticipant(input: {
+  slug: string;
+  hostToken: string;
+  participantId: string;
+  name: string;
+  rsvp: Rsvp | null;
+  plusOnes: number;
+}) {
+  await call('ql_update_participant', {
+    p_slug: input.slug,
+    p_host_token: input.hostToken,
+    p_participant_id: input.participantId,
+    p_name: input.name,
+    // Left out when null, so the RPC's default (no answer) applies.
+    p_rsvp: input.rsvp ?? undefined,
+    p_plus_ones: input.plusOnes,
+  });
+}
+
 export async function removeParticipant(slug: string, hostToken: string, participantId: string) {
   await call('ql_remove_participant', {p_slug: slug, p_host_token: hostToken, p_participant_id: participantId});
 }

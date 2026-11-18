@@ -193,7 +193,9 @@
     "confirmRemove": "Remover {name} e o que marcou?",
     "confirmRemoveYes": "Sim, remover",
     "empty": "Ninguém respondeu ainda. Mande o link no grupo!",
-    "joinToAnswer": "Entre no evento para responder."
+    "joinToAnswer": "Entre no evento para responder.",
+    "editLabel": "Editar {name}",
+    "editRsvp": "Resposta"
   },
   "Expenses": {
     "title": "Gastos",

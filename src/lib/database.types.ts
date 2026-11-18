@@ -109,6 +109,17 @@ export type Database = {
         Args: { p_host_token: string; p_patch: Json; p_slug: string }
         Returns: undefined
       }
+      ql_update_participant: {
+        Args: {
+          p_host_token: string
+          p_name: string
+          p_participant_id: string
+          p_plus_ones?: number
+          p_rsvp?: string
+          p_slug: string
+        }
+        Returns: undefined
+      }
       ql_upsert_item: {
         Args: {
           p_category?: string
