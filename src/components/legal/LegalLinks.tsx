@@ -1,9 +1,10 @@
 import {useTranslations} from 'next-intl';
 import {Link} from '@/i18n/navigation';
 import {InstallButton} from '@/components/InstallButton';
+import {appCommit, appVersion} from '@/lib/app-version';
 import styles from './LegalLinks.module.css';
 
-/** "Fixar na tela do celular" + "Sobre · Privacidade · Termos": the footer of the main screens. */
+/** "Fixar na tela do celular" + "Sobre · Privacidade · Termos" + app version: the footer of the main screens. */
 export function LegalLinks({className}: {className?: string}) {
   const t = useTranslations('Legal');
   return (
@@ -16,6 +17,10 @@ export function LegalLinks({className}: {className?: string}) {
         <span aria-hidden="true">·</span>
         <Link href="/terms">{t('terms')}</Link>
       </nav>
+      <p className={styles.version}>
+        {t('version', {version: appVersion})}
+        {appCommit && ` · ${appCommit}`}
+      </p>
     </>
   );
 }

@@ -325,7 +325,8 @@
     "updated": "Updated {date}",
     "back": "Back",
     "contactTitle": "Contact",
-    "contactBody": "Questions, requests about your data, or something broken: <link>{contact}</link>."
+    "contactBody": "Questions, requests about your data, or something broken: <link>{contact}</link>.",
+    "version": "version {version}"
   },
   "About": {
     "title": "About QuemLeva",

@@ -325,7 +325,8 @@
     "updated": "Atualizado em {date}",
     "back": "Voltar",
     "contactTitle": "Contato",
-    "contactBody": "Dúvidas, pedidos sobre seus dados ou algo errado: <link>{contact}</link>."
+    "contactBody": "Dúvidas, pedidos sobre seus dados ou algo errado: <link>{contact}</link>.",
+    "version": "versão {version}"
   },
   "About": {
     "title": "Sobre o QuemLeva",
