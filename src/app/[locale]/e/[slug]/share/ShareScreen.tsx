@@ -2,6 +2,7 @@
 
 import {useTranslations} from 'next-intl';
 import {TabBar} from '@/components/event/TabBar';
+import {AppVersion} from '@/components/legal/AppVersion';
 import {buttonClassName} from '@/components/ui/Button';
 import {CopyButton} from '@/components/ui/CopyButton';
 import {useEvent} from '@/hooks/use-event';
@@ -77,6 +78,8 @@ function ShareContent({slug, hostToken}: {slug: string; hostToken?: string}) {
         )}
 
         {isHost && hostToken && origin && <HostLinkCard url={buildHostUrl(origin, slug, hostToken)} />}
+
+        <AppVersion className={styles.version} />
       </div>
       <TabBar slug={slug} isHost={isHost} activeTab="share" />
     </main>

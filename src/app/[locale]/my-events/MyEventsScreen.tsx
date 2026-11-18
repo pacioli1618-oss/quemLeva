@@ -4,6 +4,7 @@ import {useMemo, useState} from 'react';
 import {useTranslations} from 'next-intl';
 import {Logo} from '@/components/brand/Logo';
 import {HeaderControls} from '@/components/HeaderControls';
+import {LegalLinks} from '@/components/legal/LegalLinks';
 import {Button, ButtonLink} from '@/components/ui/Button';
 import {ActionMenu, type ActionMenuItem} from '@/components/ui/ActionMenu';
 import {Tag} from '@/components/ui/Tag';
@@ -46,6 +47,10 @@ export function MyEventsScreen() {
 
       {groups && groups.upcoming.length > 0 && <EventGroup id="upcoming" title={t('upcoming')} events={groups.upcoming} />}
       {groups && groups.past.length > 0 && <EventGroup id="past" title={t('past')} events={groups.past} isPast />}
+
+      <footer className={styles.footer}>
+        <LegalLinks />
+      </footer>
     </main>
   );
 }

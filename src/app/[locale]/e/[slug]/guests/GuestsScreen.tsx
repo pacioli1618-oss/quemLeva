@@ -135,6 +135,17 @@ function MyAnswer({slug, participant, onSaved}: {slug: string; participant: Part
   const pending = useRef<{rsvp: Rsvp; plusOnes: number} | null>(null);
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
+  // The host can also change this answer from "Editar" on their own row: follow the server
+  // when it changes, unless a change typed here is still waiting to be saved.
+  const [serverAnswer, setServerAnswer] = useState({rsvp: participant.rsvp, plusOnes: participant.plusOnes});
+  if (serverAnswer.rsvp !== participant.rsvp || serverAnswer.plusOnes !== participant.plusOnes) {
+    setServerAnswer({rsvp: participant.rsvp, plusOnes: participant.plusOnes});
+    if (saveState !== 'saving') {
+      setRsvpChoice(participant.rsvp);
+      setPlusOnes(participant.plusOnes);
+    }
+  }
+
   async function flush() {
     const change = pending.current;
     if (!change) return;
@@ -331,7 +342,7 @@ function GuestRow({slug, event, participant, isMe, hostToken, onChanged}: GuestR
         )}
       </div>
       {tracking && <span className={styles.rowTracking}>{tracking}</span>}
-      {(inviteUrl || (hostToken && !isMe)) && (
+      {(inviteUrl || hostToken) && (
         <div className={styles.rowActions}>
           {inviteUrl && (
             <>
@@ -346,17 +357,18 @@ function GuestRow({slug, event, participant, isMe, hostToken, onChanged}: GuestR
               </a>
             </>
           )}
+          {hostToken && (
+            <Button
+              variant="ghost"
+              onClick={() => setIsEditing(true)}
+              aria-label={t('editLabel', {name: participant.name})}
+            >
+              {common('edit')}
+            </Button>
+          )}
+          {/* The host cannot remove themselves: they would lose their own name and claims. */}
           {hostToken && !isMe && (
-            <>
-              <Button
-                variant="ghost"
-                onClick={() => setIsEditing(true)}
-                aria-label={t('editLabel', {name: participant.name})}
-              >
-                {common('edit')}
-              </Button>
-              <RemoveButton slug={slug} hostToken={hostToken} participant={participant} onRemoved={onChanged} />
-            </>
+            <RemoveButton slug={slug} hostToken={hostToken} participant={participant} onRemoved={onChanged} />
           )}
         </div>
       )}
@@ -366,8 +378,8 @@ function GuestRow({slug, event, participant, isMe, hostToken, onChanged}: GuestR
 
 /**
  * Host only: fixes a guest's name and answers for them (someone who replied by phone).
- * Saves on a tap, unlike "Sua resposta", because it changes someone else's data.
- * Not offered on the host's own row: "Sua resposta" already covers it.
+ * Saves on a tap, unlike "Sua resposta", because it usually changes someone else's data.
+ * Also on the host's own row, the only place to fix their own name.
  */
 function EditGuestForm({
   slug,
