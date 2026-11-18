@@ -327,7 +327,7 @@
     "updated": "Atualizado em {date}",
     "back": "Voltar",
     "contactTitle": "Contato",
-    "contactBody": "Dúvidas, pedidos sobre seus dados ou algo errado: <link>{contact}</link>.",
+    "contactBody": "Dúvidas, sugestões ou algo errado: deixe um comentário em <link>{contact}</link>. Os comentários só aparecem depois de aprovados pelo editor, e pedidos sobre seus dados nunca são publicados.",
     "version": "versão {version}"
   },
   "About": {

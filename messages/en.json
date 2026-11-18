@@ -327,7 +327,7 @@
     "updated": "Updated {date}",
     "back": "Back",
     "contactTitle": "Contact",
-    "contactBody": "Questions, requests about your data, or something broken: <link>{contact}</link>.",
+    "contactBody": "Questions, suggestions or something wrong: leave a comment at <link>{contact}</link>. Comments only appear after the editor approves them, and requests about your data are never published.",
     "version": "version {version}"
   },
   "About": {
